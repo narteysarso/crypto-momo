@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 
 /// @author Nartey Kodjo-Sarso <narteysarso@gmail.com>
-pragma solidity ^0.8.15;
+pragma solidity >=0.8.15;
 
 import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 
@@ -23,11 +23,13 @@ contract Proxy is Initializable {
         }
     }
 
+        /**
+        
+        */
     function _delegatecall() internal {
-        /// @dev checks if the caller is the owner of the factory.
         /// @notice this can be made more flexible by using openzeppelin roles contract
-
-        require(ProxyFactory(factoryAddress).owner() == msg.sender, "Invalid caller");
+        require(ProxyFactory(factoryAddress).callerAddress() == msg.sender, "Invalid caller");
+        
         assembly {
             // Create new stack slot reserved for _mastercopy variable
             // Assign 32 word with address _mastercopy (left-padded with zeros)
@@ -59,10 +61,6 @@ contract Proxy is Initializable {
 
     /// @dev Fallback function only forwards calls to `mastercopy`
     fallback() external payable {
-        _delegatecall();
-    }
-
-    receive() external payable {
         _delegatecall();
     }
 }

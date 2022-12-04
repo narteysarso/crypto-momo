@@ -11,18 +11,23 @@ async function main() {
 
   const Wallet = await hre.ethers.getContractFactory("Wallet");
   const Factory = await hre.ethers.getContractFactory("ProxyFactory");
+  const CryptoMomo = await hre.ethers.getContractFactory("CryptoMomo");
 
   const deployedWallet = await Wallet.deploy();
   const deployedFactory = await Factory.deploy();
+  const deployedCryptoMomo = await CryptoMomo.deploy();
 
   await deployedWallet.deployed();
   await deployedFactory.deployed();
+  await deployedCryptoMomo.deployed();
 
-  const txn = await deployedFactory.initialize(deployedWallet.address);
-  await txn.wait();
+  await (await deployedFactory.initialize(deployedWallet.address, deployedCryptoMomo.address)).wait();
+  
+  await (await deployedCryptoMomo.initialize(deployedFactory.address)).wait()
 
   storeContractData(deployedWallet, "Wallet");
-  storeContractData(deployedFactory, "Factory");
+  storeContractData(deployedFactory, "ProxyFactory");
+  storeContractData(deployedCryptoMomo, "CryptoMomo");
 }
 
 const storeContractData = (contract, contractName) => {

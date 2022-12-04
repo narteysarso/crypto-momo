@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 
 /// @author Nartey Kodjo-Sarso <narteysarso@gmail.com>
-pragma solidity 0.8.15;
+pragma solidity >=0.8.15;
 
 import "@openzeppelin/contracts-upgradeable/security/PausableUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
@@ -15,16 +15,18 @@ error InvalidPhoneNumberOrUUID();
 ///@dev  Proxy factory
 contract ProxyFactory is Initializable,PausableUpgradeable, OwnableUpgradeable {
     address mastercopy;
+    address public callerAddress;
 
     address[] public allWallets;
 
     event WalletCreated(address indexed wallet, string phoneNumber, uint index);
     event MastercopyUpdated(address indexed oldMastercopy, address indexed newMastercopy);
 
-     function initialize(address _mastercopy) initializer public {
+     function initialize(address _mastercopy, address _callerAddress) initializer public {
         __Pausable_init();
         __Ownable_init();
         mastercopy = _mastercopy;
+        callerAddress = _callerAddress;
     }
 
     function pause() public onlyOwner {
@@ -45,7 +47,8 @@ contract ProxyFactory is Initializable,PausableUpgradeable, OwnableUpgradeable {
         emit MastercopyUpdated(old, _mastercopy);
     }
 
-    function newWallet(string memory phoneNumberOrUuid) external onlyOwner whenNotPaused returns (address wallet) {
+    function newWallet(string memory phoneNumberOrUuid) external whenNotPaused returns (address wallet) {
+        require(msg.sender == callerAddress);
         if(bytes(phoneNumberOrUuid).length < 12) revert InvalidPhoneNumberOrUUID();
         bytes memory bytecode = type(Proxy).creationCode;
         bytes32 salt = keccak256(abi.encodePacked(phoneNumberOrUuid));
