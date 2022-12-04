@@ -35,7 +35,7 @@ const Home = () => {
     }
 
     return (
-        <Layout className="layout">
+        <Layout className="layout" style={{background: "#ffffff77", height: "100vh"}}>
             <Header>
                 <div className="logo" />
                 <div style={{display: "flex", flexSize: "1", justifyContent: "end", alignItems: "center", padding: "5px" }}>
@@ -46,6 +46,7 @@ const Home = () => {
             <Content
                 style={{
                     padding: '50px',
+                    background:"transparent"
                 }}
             >
 
@@ -100,6 +101,7 @@ const Home = () => {
             <Footer
                 style={{
                     textAlign: 'center',
+                    background: "transparent"
                 }}
             >
                 CryptoMomo ©2018 Created by <a href="https://narteykodjosarso.vercel.app/">Nartey Kodjo-Sarso</a>
