@@ -9,14 +9,14 @@ This instantly puts 515 million people subscribed to mobile services in Sub- Sah
 
 
 ### Presentation
-- Demo video: 
-- Presentation slides: 
-- Air drop tokens a phone number here : 
+- Demo video: https://drive.google.com/file/d/1HTY1HFxf0DTcQXcmhMRhwkYBMU56kJO0/view?usp=sharing
+- Presentation slides: https://docs.google.com/presentation/d/15an3dAO-zfizitKdzCIkrXgaUcEh7j-EQ4hezNiEtt8/edit?usp=sharing
+- Air drop tokens a phone number here : https://crypto-momo.vercel.app/
 
-## Feautures
-- Create/claim an account: allows user to create crypto momo account or claim an already exisiting account with the valid pin
-- Get wallet address: get the crypto wallet address
-- Check balance of supported tokens
+## Features
+- Create/claim an account: allows user to create CryptoMomo account or claim an already exisiting account with the valid pin
+- Get wallet address: get the crypto wallet address of account
+- Check the balance of supported tokens
 - Send support tokens
 - Saving/stack tokens with Xend Finance services
 

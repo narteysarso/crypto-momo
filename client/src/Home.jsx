@@ -102,7 +102,7 @@ const Home = () => {
                     textAlign: 'center',
                 }}
             >
-                Ant Design ©2018 Created by Ant UED
+                CryptoMomo ©2018 Created by <a href="https://narteykodjosarso.vercel.app/">Nartey Kodjo-Sarso</a>
             </Footer>
         </Layout>
     )
