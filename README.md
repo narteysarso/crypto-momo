@@ -22,8 +22,9 @@ This instantly puts 515 million people subscribed to mobile services in Sub- Sah
 
 ## TODO
 - Buy tokens with mobile money and XendBridge
+- Implement EIP 1271
 
-## Benefits
+## Application Benefits
 
 - Crypto inclusion and mass adoption
 - Self setup and eliminate crypto fraud
